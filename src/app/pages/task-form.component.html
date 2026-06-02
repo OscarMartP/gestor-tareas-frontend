@@ -1,0 +1,59 @@
+<section class="page-shell">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Gestor de Tareas</p>
+      <h1>{{ isEdit ? 'Editar tarea' : 'Nueva tarea' }}</h1>
+      <p class="subtitle">
+        {{ isEdit ? 'Actualiza los datos de la tarea existente.' : 'Agrega una nueva tarea al backend.' }}
+      </p>
+    </div>
+    <button type="button" class="button secondary" (click)="volver()">Volver</button>
+  </div>
+
+  <div *ngIf="loading" class="message info">Cargando datos...</div>
+  <div *ngIf="error" class="message error">{{ error }}</div>
+
+  <form [formGroup]="form" class="task-form" (ngSubmit)="enviarFormulario()">
+    <label>
+      Título
+      <input formControlName="titulo" type="text" placeholder="Nombre de la tarea" />
+      <span *ngIf="control('titulo')?.invalid && control('titulo')?.touched" class="field-error">
+        El título es obligatorio y debe tener máximo 120 caracteres.
+      </span>
+    </label>
+
+    <label>
+      Descripción
+      <textarea formControlName="descripcion" rows="4" placeholder="Descripción opcional"></textarea>
+      <span *ngIf="control('descripcion')?.invalid && control('descripcion')?.touched" class="field-error">
+        La descripción no puede exceder los 400 caracteres.
+      </span>
+    </label>
+
+    <div class="field-row">
+      <label>
+        Fecha límite
+        <input formControlName="fechaLimite" type="date" />
+        <span *ngIf="control('fechaLimite')?.invalid && control('fechaLimite')?.touched" class="field-error">
+          Selecciona una fecha límite.
+        </span>
+      </label>
+
+      <label>
+        Prioridad
+        <select formControlName="prioridad">
+          <option *ngFor="let prioridad of prioridades" [value]="prioridad">{{ prioridad }}</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions form-actions">
+      <button type="submit" class="button primary" [disabled]="loading">
+        {{ isEdit ? 'Actualizar tarea' : 'Crear tarea' }}
+      </button>
+      <button type="button" class="button secondary" (click)="volver()" [disabled]="loading">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</section>

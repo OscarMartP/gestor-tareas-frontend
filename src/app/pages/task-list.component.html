@@ -1,0 +1,97 @@
+<section class="page-shell">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Gestor de Tareas</p>
+      <h1>Mis tareas</h1>
+      <p class="subtitle">Crea, edita, cambia el estado y elimina tareas con la API del backend.</p>
+    </div>
+    <div class="filters">
+      <div class="filter-control">
+        <label for="prioridad">Prioridad</label>
+        <select id="prioridad" [(ngModel)]="selectedPriority" (ngModelChange)="cargarTareas()">
+          <option value="">Todas las prioridades</option>
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+      </div>
+      <div class="filter-control">
+        <label for="estado">Estado</label>
+        <select id="estado" [(ngModel)]="selectedCompletion" (ngModelChange)="cargarTareas()">
+          <option value="all">Todas</option>
+          <option value="completed">Completadas</option>
+          <option value="notCompleted">No completadas</option>
+        </select>
+      </div>
+      <div class="filter-control filter-actions">
+        <button type="button" class="button secondary" (click)="limpiarFiltros()">Limpiar filtros</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="message info">Cargando tareas...</div>
+  <div *ngIf="error" class="message error">{{ error }}</div>
+  <div *ngIf="!loading && tareas.length === 0" class="message empty">
+    No hay tareas registradas. Comienza creando una nueva tarea.
+  </div>
+
+  <ul class="task-grid" *ngIf="!loading && tareas.length > 0">
+    <li class="task-card" *ngFor="let tarea of tareas">
+      <header>
+        <span class="badge estado {{ tarea.estado | lowercase }}">{{ tarea.estado }}</span>
+        <span class="badge prioridad {{ tarea.prioridad | lowercase }}">{{ tarea.prioridad }}</span>
+      </header>
+
+      <h2>{{ tarea.titulo }}</h2>
+      <p class="description">{{ tarea.descripcion || 'Sin descripción' }}</p>
+
+      <div class="task-meta">
+        <div>
+          <strong>Creada:</strong>
+          <span>{{ tarea.fechaCreacion | date: 'shortDate' }}</span>
+        </div>
+        <div>
+          <strong>Limite:</strong>
+          <span>{{ tarea.fechaLimite | date: 'shortDate' }}</span>
+        </div>
+      </div>
+
+      <div class="task-extra">
+        <span>{{ tarea.estaVencida ? 'Vencida' : 'Días restantes: ' + tarea.diasRestantes }}</span>
+        <span *ngIf="tarea.motivoCancelacion">Motivo: {{ tarea.motivoCancelacion }}</span>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="button secondary" (click)="navegarAEditar(tarea.id)">Editar</button>
+        <button type="button" class="button danger" (click)="eliminarTarea(tarea.id)">Eliminar</button>
+      </div>
+
+      <div class="actions state-actions">
+        <button
+          type="button"
+          class="button tertiary"
+          (click)="cambiarEstado(tarea.id, 'iniciar')"
+          [disabled]="tarea.estado !== 'Pendiente'"
+        >
+          Iniciar
+        </button>
+        <button
+          type="button"
+          class="button tertiary"
+          (click)="cambiarEstado(tarea.id, 'completar')"
+          [disabled]="tarea.estado === 'Completada' || tarea.estado === 'Cancelada'"
+        >
+          Completar
+        </button>
+        <button
+          type="button"
+          class="button tertiary"
+          (click)="cambiarEstado(tarea.id, 'cancelar')"
+          [disabled]="tarea.estado === 'Completada' || tarea.estado === 'Cancelada'"
+        >
+          Cancelar
+        </button>
+      </div>
+    </li>
+  </ul>
+</section>

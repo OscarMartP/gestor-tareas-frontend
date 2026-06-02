@@ -1,0 +1,271 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.page-shell {
+  padding: 2rem 1rem;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.page-header > div {
+  flex: 1;
+  min-width: 250px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.filter-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 190px;
+}
+
+.filter-control label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.filter-control select {
+  width: 100%;
+  min-height: 2.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ced4da;
+  background: white;
+  color: #212529;
+}
+
+.filter-actions {
+  align-self: flex-end;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6c757d;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #212529;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0.5rem 0 0 0;
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.message {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.message.info {
+  background-color: #cfe2ff;
+  color: #084298;
+  border: 1px solid #b6d4fe;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
+.message.empty {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d3d3d3;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.task-card {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.task-card header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge.estado.pendiente {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+
+.badge.estado.enprogreso {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.badge.estado.completada {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.badge.estado.cancelada {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.badge.prioridad.baja {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.badge.prioridad.media {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.badge.prioridad.alta {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #212529;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+.task-meta,
+.task-extra {
+  font-size: 0.9rem;
+  color: #495057;
+  margin-bottom: 1rem;
+}
+
+.task-meta {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.task-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #6c757d;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.state-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.button.secondary {
+  background-color: #e9ecef;
+  color: #212529;
+  border: 1px solid #dee2e6;
+}
+
+.button.secondary:hover:not(:disabled) {
+  background-color: #dee2e6;
+}
+
+.button.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button.danger:hover:not(:disabled) {
+  background-color: #bb2d3b;
+}
+
+.button.tertiary {
+  background-color: #e9ecef;
+  color: #212529;
+  font-size: 0.85rem;
+}
+
+.button.tertiary:hover:not(:disabled) {
+  background-color: #dee2e6;
+}
+
+.button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task-meta {
+    grid-template-columns: 1fr;
+  }
+}
